@@ -1,11 +1,8 @@
 #include "sim_avr.h"
-#include "avr_eeprom.h"
 #include "avr_watchdog.h"
 #include "avr_extint.h"
 #include "avr_ioport.h"
 #include "avr_timer.h"
-#include "avr_adc.h"
-#include "avr_acomp.h"
 
 #define _AVR_IO_H_
 #define __ASSEMBLER__
@@ -36,15 +33,14 @@ static const struct mcu_t {
 		.vector_size = 2,
 // Disable signature when using an old avr toolchain
 #ifdef SIGNATURE_0
-		.signature = { SIGNATURE_0,SIGNATURE_1,SIGNATURE_2 },
-		//.fuse = { LFUSE_DEFAULT, HFUSE_DEFAULT },
+		.signature = { SIGNATURE_0, SIGNATURE_1, SIGNATURE_2 },
+		.fuse = { 0xFF }, 
 #endif
 		.init = init,
 		.reset = reset,
 	},
 	.watchdog = {
 		.wdrf = AVR_IO_REGBIT(RSTFLR, WDRF),
-		//.wdce = AVR_IO_REGBIT(_WDSR, WDCE),
 		.wde = AVR_IO_REGBIT(WDTCSR, WDE),
 		.wdp = { AVR_IO_REGBIT(WDTCSR, WDP0),AVR_IO_REGBIT(WDTCSR, WDP1),
 				AVR_IO_REGBIT(WDTCSR, WDP2),AVR_IO_REGBIT(WDTCSR, WDP3) },

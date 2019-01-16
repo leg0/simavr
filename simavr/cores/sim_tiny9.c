@@ -41,6 +41,11 @@ static const struct mcu_t {
 	},
 	.watchdog = {
 		.wdrf = AVR_IO_REGBIT(RSTFLR, WDRF),
+		
+		// in order to enable wdt, there must be CCP = 0xD8 before enabling.
+		// doesn't seem to fit in the regbit concept.
+		.wdce = AVR_IO_REGBIT(CCP, 0),
+
 		.wde = AVR_IO_REGBIT(WDTCSR, WDE),
 		.wdp = { AVR_IO_REGBIT(WDTCSR, WDP0),AVR_IO_REGBIT(WDTCSR, WDP1),
 				AVR_IO_REGBIT(WDTCSR, WDP2),AVR_IO_REGBIT(WDTCSR, WDP3) },

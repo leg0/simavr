@@ -62,7 +62,9 @@ enum {
 	avr_timer_wgm_ctc,
 	avr_timer_wgm_pwm,
 	avr_timer_wgm_fast_pwm,
-	avr_timer_wgm_fc_pwm,
+	avr_timer_wgm_fc_pwm, // freq correct?
+	avr_timer_wgm_pc_pwm, // phase correct
+	avr_timer_wgm_fpc_pwm, // freq&phase correct
 };
 
 // Compare output modes
@@ -104,6 +106,7 @@ typedef struct avr_timer_wgm_t {
 #define AVR_TIMER_WGM_FCPWM10() { .kind = avr_timer_wgm_fc_pwm, .size=10 }
 #define AVR_TIMER_WGM_OCPWM() { .kind = avr_timer_wgm_pwm, .top = avr_timer_wgm_reg_ocra }
 #define AVR_TIMER_WGM_ICPWM() { .kind = avr_timer_wgm_pwm, .top = avr_timer_wgm_reg_icr }
+#define AVR_TIMER_WGM_FASTPWM() { .kind = avr_timer_wgm_fast_pwm, .top = avr_timer_wgm_reg_ocra }
 #define AVR_TIMER_WGM_ICFASTPWM() { .kind = avr_timer_wgm_fast_pwm, .top = avr_timer_wgm_reg_icr }
 
 typedef struct avr_timer_comp_t {

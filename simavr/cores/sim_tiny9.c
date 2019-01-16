@@ -81,10 +81,21 @@ static const struct mcu_t {
 		.name = '0',
 		.wgm = { AVR_IO_REGBIT(TCCR0A, WGM00), AVR_IO_REGBIT(TCCR0A, WGM01), AVR_IO_REGBIT(TCCR0B, WGM02) },
 		.wgm_op = {
-			[0] = AVR_TIMER_WGM_NORMAL8(),
-			[2] = AVR_TIMER_WGM_CTC(),
-			[3] = AVR_TIMER_WGM_FASTPWM8(),
-			[7] = AVR_TIMER_WGM_OCPWM(),
+			[0] = AVR_TIMER_WGM_NORMAL16(),
+			//[1] = AVR_TIMER_WGM_PCPWM8(), // fc=phase correct?
+			//[2] = AVR_TIMER_WGM_PCPWM9(),
+			//[3] = AVR_TIMER_WGM_PCPWM10(),
+			[4] = AVR_TIMER_WGM_CTC(),
+			[5] = AVR_TIMER_WGM_FASTPWM8(),
+			[6] = AVR_TIMER_WGM_FASTPWM9(),
+			[7] = AVR_TIMER_WGM_FASTPWM10(),
+			//[8] = AVR_TIMER_WGM_IC phase and freq correct PWM
+			//[9] = AVR_TIMER_WGM_OC phase and freq correct PWM
+			//[10] = pwm phase correct, top = ICR0
+			//[11] = PWM phase correct, top = OCR0A
+			[12] = AVR_TIMER_WGM_ICCTC(),
+			[14] = AVR_TIMER_WGM_ICFASTPWM(),
+			[15] = AVR_TIMER_WGM_FASTPWM()
 		},
 		.cs = { AVR_IO_REGBIT(TCCR0B, CS00), AVR_IO_REGBIT(TCCR0B, CS01), AVR_IO_REGBIT(TCCR0B, CS02) },
 		.cs_div = { 0, 0, 3 /* 8 */, 6 /* 64 */, 8 /* 256 */, 10 /* 1024 */ },

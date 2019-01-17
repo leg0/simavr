@@ -124,6 +124,11 @@ static const struct mcu_t {
 					.vector = TIM0_COMPB_vect,
 				}
 			}
+		},
+		.icr = {
+			.enable = AVR_IO_REGBIT(TCCR0B, ICES0),
+			.raised = AVR_IO_REGBIT(TIFR0, ICF0),
+			.vector = TIM0_CAPT_vect
 		}
 	},
 };
